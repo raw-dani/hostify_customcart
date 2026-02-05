@@ -35,13 +35,42 @@ function recalctotals() {
         type: 'POST',
         data: formData,
         dataType: 'json',
-        success: function(data) {
-            if (data && data.producttotal) {
-                jQuery('#producttotal').html(data.producttotal);
+        success: function(data, textStatus, xhr) {
+            try {
+                // Check if response is valid JSON
+                if (typeof data === 'object' && data !== null) {
+                    if (data.producttotal) {
+                        jQuery('#producttotal').html(data.producttotal);
+                    } else if (data.error) {
+                        console.error('Server error:', data.error);
+                        jQuery('#producttotal').html('<div class="alert alert-danger">Error: ' + data.error + '</div>');
+                    }
+                } else {
+                    console.error('Invalid JSON response format');
+                    jQuery('#producttotal').html('<div class="alert alert-warning">Unable to calculate totals. Please refresh the page.</div>');
+                }
+            } catch (e) {
+                console.error('Error processing response:', e);
+                jQuery('#producttotal').html('<div class="alert alert-danger">Error processing server response.</div>');
             }
         },
         error: function(xhr, status, error) {
             console.error('Error calculating totals:', error);
+            console.error('Status:', status);
+            console.error('Response:', xhr.responseText);
+
+            // Try to parse error response
+            try {
+                var errorData = JSON.parse(xhr.responseText);
+                if (errorData && errorData.error) {
+                    jQuery('#producttotal').html('<div class="alert alert-danger">Error: ' + errorData.error + '</div>');
+                } else {
+                    jQuery('#producttotal').html('<div class="alert alert-danger">Unable to calculate totals. Please try again.</div>');
+                }
+            } catch (e) {
+                // If response is not JSON, show generic error
+                jQuery('#producttotal').html('<div class="alert alert-danger">Unable to calculate totals. Please refresh the page.</div>');
+            }
         },
         complete: function() {
             // Sembunyikan loader

@@ -52,8 +52,8 @@
                     {if $config_qty <= $lisensi}
                         <div class="clearfix">
                             <span class="pull-left float-left">&nbsp;&raquo; {$configoption.name}: {$config_qty}</span><br>
-                            <span class="pull-left float-left">&nbsp;&raquo; {$harga|number_format:2:".":","} - {$percentage}%</span>
-                            <span class="pull-right float-right">Rp. {$sumprice|number_format:2:".":","} IDR</span>
+                            <span class="pull-left float-left">&nbsp;&raquo; {$harga|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} - {$percentage}%</span>
+                            <span class="pull-right float-right">Rp. {$sumprice|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                         </div>
                         {$configoption.recurring = $sumprice}
                     {else}
@@ -63,10 +63,10 @@
                             <span class="pull-left float-left">&nbsp;&raquo; {$configoption.name}: {$config_qty}</span><br>
 
                             {if $config_qty > 5}
-                                <span class="pull-left float-left">&nbsp;&raquo; {$hargafix|number_format:2:".":","} - {$percentage}% Seats: {$lisensi}</span>
-                                <span class="pull-right float-right">Rp. {$sumpricefix|number_format:2:".":","} IDR</span><br>
-                                <span class="pull-left float-left">&nbsp;&raquo; {$harganormal|number_format:2:".":","} Seats: {$lisensilebih}</span>
-                                <span class="pull-right float-right">Rp. {$harganormal|number_format:2:".":","} IDR</span>
+                                <span class="pull-left float-left">&nbsp;&raquo; {$hargafix|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} - {$percentage}% Seats: {$lisensi}</span>
+                                <span class="pull-right float-right">Rp. {$sumpricefix|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span><br>
+                                <span class="pull-left float-left">&nbsp;&raquo; {$harganormal|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} Seats: {$lisensilebih}</span>
+                                <span class="pull-right float-right">Rp. {$harganormal|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                             {/if}
                         </div>
                     {/if}

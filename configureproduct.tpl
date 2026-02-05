@@ -45,7 +45,7 @@ var _localLang = {
                                 <div class="form-group">
                                     <label for="inputBillingcycle">{$LANG.cartchoosecycle}</label>
                                     <br>
-                                    <select name="billingcycle" id="inputBillingcycle" class="form-control select-inline custom-select" onchange="{if $configurableoptions}updateConfigurableOptions({$i}, this.value);{else}recalctotals();{/if}">
+                                    <select name="billingcycle" id="inputBillingcycle" class="form-control select-inline custom-select" onchange="recalctotals();">
                                         {if $pricing.annually}
                                             <option value="annually"{if $billingcycle eq "annually"} selected{/if}>
                                                 {$pricing.annually}
@@ -245,7 +245,7 @@ var _localLang = {
                                                     <div>
                                                         <input type="number" name="configoption[{$configoption.id}]" value="{if $configoption.selectedqty}{$configoption.selectedqty}{else}{$configoption.qtyminimum}{/if}" id="inputConfigOption{$configoption.id}" min="{$configoption.qtyminimum}" onchange="recalctotals()" onkeyup="recalctotals()" class="form-control form-control-qty" />
                                                         <span class="form-control-static form-control-static-inline">
-                                                                x {$configoption.options.0.name}
+                                                                x {$configoption.optionname}
                                                             </span>
                                                     </div>
                                                 {/if}

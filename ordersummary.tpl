@@ -8,7 +8,7 @@
 
     <div class="clearfix">
         <span class="pull-left float-left">{$producttotals.productinfo.name}</span>
-        <span class="pull-right float-right">{$producttotals.pricing.baseprice}</span>
+        <span class="pull-right float-right">{$producttotals.pricing.baseprice|number_format:2:".":","}</span>
     </div>
 
     {* nilai diskon 30%            *}
@@ -19,7 +19,7 @@
     {foreach $producttotals.configoptions as $configoption}
         {if $configoption}
             {if $producttotals.pid == $idproduk}
-                {$texttemp = 'Selamat untuk pembelian dibawah 5 lisensi anda mendapatkan diskon khusus 30%'}
+                {$texttemp = 'Selamat untuk pembelian dibawah 20 lisensi anda mendapatkan diskon khusus 30%'}
                 {$defaultprice = $configoption.recurring}
                 {$prices = explode(" ",$configoption.recurring)}
                 {$d = explode(",",$prices[1])}
@@ -51,8 +51,8 @@
                     {if $config_qty <= $lisensi}
                         <div class="clearfix">
                             <span class="pull-left float-left">&nbsp;&raquo; {$configoption.name}: {$config_qty}</span><br>
-                            <span class="pull-left float-left">&nbsp;&raquo; {$harga} - {$percentage}%</span>
-                            <span class="pull-right float-right">Rp. {$sumprice} IDR</span>
+                            <span class="pull-left float-left">&nbsp;&raquo; {$harga|number_format:2:".":","} - {$percentage}%</span>
+                            <span class="pull-right float-right">Rp. {$sumprice|number_format:2:".":","} IDR</span>
                         </div>
                         {$configoption.recurring = $sumprice}
                     {else}
@@ -62,10 +62,10 @@
                             <span class="pull-left float-left">&nbsp;&raquo; {$configoption.name}: {$config_qty}</span><br>
 
                             {if $config_qty > 5}
-                                <span class="pull-left float-left">&nbsp;&raquo; {$hargafix} - {$percentage}% Seats: {$lisensi}</span>
-                                <span class="pull-right float-right">Rp. {$sumpricefix} IDR</span><br>
-                                <span class="pull-left float-left">&nbsp;&raquo; {$harganormal} Seats: {$lisensilebih}</span>
-                                <span class="pull-right float-right">Rp. {$harganormal} IDR</span>
+                                <span class="pull-left float-left">&nbsp;&raquo; {$hargafix|number_format:2:".":","} - {$percentage}% Seats: {$lisensi}</span>
+                                <span class="pull-right float-right">Rp. {$sumpricefix|number_format:2:".":","} IDR</span><br>
+                                <span class="pull-left float-left">&nbsp;&raquo; {$harganormal|number_format:2:".":","} Seats: {$lisensilebih}</span>
+                                <span class="pull-right float-right">Rp. {$harganormal|number_format:2:".":","} IDR</span>
                             {/if}
                         </div>
                     {/if}
@@ -137,7 +137,7 @@
                 {if $producttotals.pid == $idproduk}
                     <div class="clearfix">
                         <span class="pull-left float-left">{$cycle}:</span>
-                        <span class="pull-right float-right">Rp. {$configoption.recurring} IDR</span>
+                        <span class="pull-right float-right">Rp. {$configoption.recurring|number_format:2:".":","} IDR</span>
                     </div>
                 {else}
                     <div class="clearfix">
@@ -150,9 +150,9 @@
                 {if $producttotals.pid == $idproduk}
                     <div class="clearfix">
                         <span class="pull-left float-left">{$carttotals.taxname} @ {$carttotals.taxrate}%:</span>
-                        <span class="pull-right float-right">Rp. {$taxpersen} IDR</span>
+                        <span class="pull-right float-right">Rp. {$taxpersen|number_format:2:".":","} IDR</span>
                     </div>
-                {else}    
+                {else}
                     <div class="clearfix">
                         <span class="pull-left float-left">{$carttotals.taxname} @ {$carttotals.taxrate}%:</span>
                         <span class="pull-right float-right">{$producttotals.pricing.tax1}</span>
@@ -175,18 +175,18 @@
             
             {if $configoption.optionname <= $lisensi}
                 <div class="total-due-today">
-                    <span class="amt">Rp. {$producttotals.pricing.totaltoday} IDR</span>
+                    <span class="amt">Rp. {$producttotals.pricing.totaltoday|number_format:2:".":","} IDR</span>
                     <span>{$LANG.ordertotalduetoday}</span>
                 </div>
             {else}
                 <div class="total-due-today">
-                    <span class="amt">Rp. {$producttotals.pricing.totaltoday}  IDR</span>
+                    <span class="amt">Rp. {$producttotals.pricing.totaltoday|number_format:2:".":","} IDR</span>
                     <span>{$LANG.ordertotalduetoday}</span>
                 </div>
             {/if}
         {else}
             <div class="total-due-today">
-                <span class="amt">{$producttotals.pricing.totaltoday}</span>
+                <span class="amt">{$producttotals.pricing.totaltoday|number_format:2:".":","}</span>
                 <span>{$LANG.ordertotalduetoday}</span>
             </div>
         {/if}

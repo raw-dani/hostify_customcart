@@ -1,0 +1,2 @@
+<link rel="stylesheet" type="text/css" href="{$WEB_ROOT}/templates/orderforms/hostify_customcart/css/style.css" property="stylesheet" />
+<script type="text/javascript" src="{$WEB_ROOT}/templates/orderforms/hostify_customcart/js/scripts.js"></script>

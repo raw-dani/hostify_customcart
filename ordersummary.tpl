@@ -3,18 +3,13 @@
     <img src="/assets/img/diskon/EIKON30.png" alt="diskon" width="100%" height="100%">
 {/if} *}
 
-{* Helper function to extract numeric value from formatted price string *}
-{function name=cleanNumeric value=''}
-    {$value|regex_replace:'/[^0-9.]/':''}
-{/function}
-
 {if $producttotals}
     <span class="product-name">{if $producttotals.allowqty && $producttotals.qty > 1}{$producttotals.qty} x {/if}{$producttotals.productinfo.name}</span>
     <span class="product-group">{$producttotals.productinfo.groupname}</span>
 
     <div class="clearfix">
         <span class="pull-left float-left">{$producttotals.productinfo.name}</span>
-        <span class="pull-right float-right">Rp. {cleanNumeric value=$producttotals.pricing.baseprice|number_format:2:".":","} IDR</span>
+        <span class="pull-right float-right">Rp. {$producttotals.pricing.baseprice|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
     </div>
 
     {* nilai diskon 30%            *}
@@ -181,18 +176,18 @@
             
             {if $configoption.optionname <= $lisensi}
                 <div class="total-due-today">
-                    <span class="amt">Rp. {cleanNumeric value=$producttotals.pricing.totaltoday|number_format:2:".":","} IDR</span>
+                    <span class="amt">Rp. {$producttotals.pricing.totaltoday|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                     <span>{$LANG.ordertotalduetoday}</span>
                 </div>
             {else}
                 <div class="total-due-today">
-                    <span class="amt">Rp. {cleanNumeric value=$producttotals.pricing.totaltoday|number_format:2:".":","} IDR</span>
+                    <span class="amt">Rp. {$producttotals.pricing.totaltoday|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                     <span>{$LANG.ordertotalduetoday}</span>
                 </div>
             {/if}
         {else}
             <div class="total-due-today">
-                <span class="amt">Rp. {cleanNumeric value=$producttotals.pricing.totaltoday|number_format:2:".":","} IDR</span>
+                <span class="amt">Rp. {$producttotals.pricing.totaltoday|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                 <span>{$LANG.ordertotalduetoday}</span>
             </div>
         {/if}
@@ -243,25 +238,25 @@
     <div class="summary-totals">
         <div class="clearfix">
             <span class="pull-left float-left">{lang key='ordersubtotal'}:</span>
-            <span class="pull-right float-right">Rp. {cleanNumeric value=$carttotals.subtotal|number_format:2:".":","} IDR</span>
+            <span class="pull-right float-right">Rp. {$carttotals.subtotal|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
         </div>
         {if ($carttotals.taxrate && $carttotals.taxtotal) || ($carttotals.taxrate2 && $carttotals.taxtotal2)}
             {if $carttotals.taxrate}
                 <div class="clearfix">
                     <span class="pull-left float-left">{$carttotals.taxname} @ {$carttotals.taxrate}%:</span>
-                    <span class="pull-right float-right">Rp. {cleanNumeric value=$carttotals.taxtotal|number_format:2:".":","} IDR</span>
+                    <span class="pull-right float-right">Rp. {$carttotals.taxtotal|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                 </div>
             {/if}
             {if $carttotals.taxrate2}
                 <div class="clearfix">
                     <span class="pull-left float-left">{$carttotals.taxname2} @ {$carttotals.taxrate2}%:</span>
-                    <span class="pull-right float-right">Rp. {cleanNumeric value=$carttotals.taxtotal2|number_format:2:".":","} IDR</span>
+                    <span class="pull-right float-right">Rp. {$carttotals.taxtotal2|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                 </div>
             {/if}
         {/if}
     </div>
     <div class="total-due-today">
-        <span class="amt">Rp. {cleanNumeric value=$carttotals.total|number_format:2:".":","} IDR</span>
+        <span class="amt">Rp. {$carttotals.total|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
         <span>{lang key='ordertotalduetoday'}</span>
     </div>
 {/if}

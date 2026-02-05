@@ -138,7 +138,7 @@
                 {if $producttotals.pid == $idproduk}
                     <div class="clearfix">
                         <span class="pull-left float-left">{$cycle}:</span>
-                        <span class="pull-right float-right">Rp. {$configoption.recurring|number_format:2:".":","} IDR</span>
+                        <span class="pull-right float-right">Rp. {$configoption.recurring|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                     </div>
                 {else}
                     <div class="clearfix">
@@ -151,7 +151,7 @@
                 {if $producttotals.pid == $idproduk}
                     <div class="clearfix">
                         <span class="pull-left float-left">{$carttotals.taxname} @ {$carttotals.taxrate}%:</span>
-                        <span class="pull-right float-right">Rp. {$taxpersen|number_format:2:".":","} IDR</span>
+                        <span class="pull-right float-right">Rp. {$taxpersen|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                     </div>
                 {else}
                     <div class="clearfix">
@@ -176,12 +176,12 @@
             
             {if $configoption.optionname <= $lisensi}
                 <div class="total-due-today">
-                    <span class="amt">Rp. {$producttotals.pricing.totaltoday|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
+                    <span class="amt">Rp. {$totalday|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                     <span>{$LANG.ordertotalduetoday}</span>
                 </div>
             {else}
                 <div class="total-due-today">
-                    <span class="amt">Rp. {$producttotals.pricing.totaltoday|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
+                    <span class="amt">Rp. {$totalday|regex_replace:'/[^0-9.]/':''|number_format:2:".":","} IDR</span>
                     <span>{$LANG.ordertotalduetoday}</span>
                 </div>
             {/if}

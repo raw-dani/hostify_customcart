@@ -79,7 +79,7 @@
             {else}
                 <div class="clearfix">
                     <span class="pull-left float-left">&nbsp;&raquo; {$configoption.name}: {$configoption.optionname}</span>
-                    <span class="pull-right float-right">{$configoption.recurring}{if $configoption.setup} + {$configoption.setup} {$LANG.ordersetupfee}{/if}</span>
+                    <span class="pull-right float-right">Rp. {$configoption.recurring|number_format:2:".":","} IDR{if $configoption.setup} + Rp. {$configoption.setup|number_format:2:".":","} IDR {$LANG.ordersetupfee}{/if}</span>
                 </div>
             {/if}
         {/if}
@@ -88,7 +88,7 @@
     {foreach $producttotals.addons as $addon}
         <div class="clearfix">
             <span class="pull-left float-left">+ {$addon.name}</span>
-            <span class="pull-right float-right">{$addon.recurring}</span>
+            <span class="pull-right float-right">Rp. {$addon.recurring|number_format:2:".":","} IDR</span>
         </div>    
     {/foreach}
 
@@ -97,25 +97,25 @@
             {if $producttotals.pricing.setup}
                 <div class="clearfix">
                     <span class="pull-left float-left">{$LANG.cartsetupfees}:</span>
-                    <span class="pull-right float-right">{$producttotals.pricing.setup}</span>
+                    <span class="pull-right float-right">Rp. {$producttotals.pricing.setup|number_format:2:".":","} IDR</span>
                 </div>
             {/if}
             {foreach from=$producttotals.pricing.recurringexcltax key=cycle item=recurring}
                 <div class="clearfix">
                     <span class="pull-left float-left">{$cycle}:</span>
-                    <span class="pull-right float-right">{$recurring}</span>
+                    <span class="pull-right float-right">Rp. {$recurring|number_format:2:".":","} IDR</span>
                 </div>
             {/foreach}
             {if $producttotals.pricing.tax1}
                 <div class="clearfix">
                     <span class="pull-left float-left">{$carttotals.taxname} @ {$carttotals.taxrate}%:</span>
-                    <span class="pull-right float-right">{$producttotals.pricing.tax1}</span>
+                    <span class="pull-right float-right">Rp. {$producttotals.pricing.tax1|number_format:2:".":","} IDR</span>
                 </div>
             {/if}
             {if $producttotals.pricing.tax2}
                 <div class="clearfix">
                     <span class="pull-left float-left">{$carttotals.taxname2} @ {$carttotals.taxrate2}%:</span>
-                    <span class="pull-right float-right">{$producttotals.pricing.tax2}</span>
+                    <span class="pull-right float-right">Rp. {$producttotals.pricing.tax2|number_format:2:".":","} IDR</span>
                 </div>
             {/if}
         </div>
@@ -142,7 +142,7 @@
                 {else}
                     <div class="clearfix">
                         <span class="pull-left float-left">{$cycle}:</span>
-                        <span class="pull-right float-right">{$recurring}</span>
+                        <span class="pull-right float-right">Rp. {$recurring|number_format:2:".":","} IDR</span>
                     </div>
                 {/if}
             {/foreach}
@@ -155,7 +155,7 @@
                 {else}
                     <div class="clearfix">
                         <span class="pull-left float-left">{$carttotals.taxname} @ {$carttotals.taxrate}%:</span>
-                        <span class="pull-right float-right">{$producttotals.pricing.tax1}</span>
+                        <span class="pull-right float-right">Rp. {$producttotals.pricing.tax1|number_format:2:".":","} IDR</span>
                     </div>
                 {/if}
             {/if}
@@ -186,7 +186,7 @@
             {/if}
         {else}
             <div class="total-due-today">
-                <span class="amt">{$producttotals.pricing.totaltoday|number_format:2:".":","}</span>
+                <span class="amt">Rp. {$producttotals.pricing.totaltoday|number_format:2:".":","} IDR</span>
                 <span>{$LANG.ordertotalduetoday}</span>
             </div>
         {/if}
@@ -200,7 +200,7 @@
                     {$renewal.domain} - {$renewal.regperiod} {if $renewal.regperiod == 1}{lang key='orderForm.year'}{else}{lang key='orderForm.years'}{/if}
                 </span>
                 <span class="pull-right float-right">
-                    {$renewal.priceBeforeTax}
+                    Rp. {$renewal.priceBeforeTax|number_format:2:".":","} IDR
                     <a onclick="removeItem('r','{$domainId}'); return false;" href="#" id="linkCartRemoveDomainRenewal{$domainId}">
                         <i class="fas fa-fw fa-trash-alt"></i>
                     </a>
@@ -237,25 +237,25 @@
     <div class="summary-totals">
         <div class="clearfix">
             <span class="pull-left float-left">{lang key='ordersubtotal'}:</span>
-            <span class="pull-right float-right">{$carttotals.subtotal}</span>
+            <span class="pull-right float-right">Rp. {$carttotals.subtotal|number_format:2:".":","} IDR</span>
         </div>
         {if ($carttotals.taxrate && $carttotals.taxtotal) || ($carttotals.taxrate2 && $carttotals.taxtotal2)}
             {if $carttotals.taxrate}
                 <div class="clearfix">
                     <span class="pull-left float-left">{$carttotals.taxname} @ {$carttotals.taxrate}%:</span>
-                    <span class="pull-right float-right">{$carttotals.taxtotal}</span>
+                    <span class="pull-right float-right">Rp. {$carttotals.taxtotal|number_format:2:".":","} IDR</span>
                 </div>
             {/if}
             {if $carttotals.taxrate2}
                 <div class="clearfix">
                     <span class="pull-left float-left">{$carttotals.taxname2} @ {$carttotals.taxrate2}%:</span>
-                    <span class="pull-right float-right">{$carttotals.taxtotal2}</span>
+                    <span class="pull-right float-right">Rp. {$carttotals.taxtotal2|number_format:2:".":","} IDR</span>
                 </div>
             {/if}
         {/if}
     </div>
     <div class="total-due-today">
-        <span class="amt">{$carttotals.total}</span>
+        <span class="amt">Rp. {$carttotals.total|number_format:2:".":","} IDR</span>
         <span>{lang key='ordertotalduetoday'}</span>
     </div>
 {/if}

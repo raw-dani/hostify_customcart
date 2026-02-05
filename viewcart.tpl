@@ -186,10 +186,10 @@
                                                 {if $product.pid == $idproduk}
                                                     
                                                     {if $configoption.qty <= $lisensi}
-                                                        <span>Rp. {$totalwithdiskonx} IDR</span>
+                                                        <span>Rp. {$totalwithdiskonx|number_format:2:".":","} IDR</span>
                                                         {$totalinday = $totalwithdiskonx}
                                                     {else}
-                                                        <span>Rp. {$totalx} IDR</span>
+                                                        <span>Rp. {$totalx|number_format:2:".":","} IDR</span>
                                                         {$totalinday = $total}
                                                     {/if}
                                                 {else}
@@ -578,10 +578,10 @@
                                         
                                         {$vartotalsummary}
                                         {if $configoption.qty <= $lisensi}
-                                            <span id="subtotal" class="pull-right float-right">Rp. {$totalwithdiskonx} IDR</span>
+                                            <span id="subtotal" class="pull-right float-right">Rp. {$totalwithdiskonx|number_format:2:".":","} IDR</span>
                                             {$vartotalsummary = $totalwithdiskonx}
                                         {else}
-                                            <span id="subtotal" class="pull-right float-right">Rp. {$totalx} IDR</span>
+                                            <span id="subtotal" class="pull-right float-right">Rp. {$totalx|number_format:2:".":","} IDR</span>
                                             {$vartotalsummary = $totalx}
                                         {/if}
                                     {else}
@@ -609,7 +609,7 @@
                                                 {/if}
                                                 <div class="clearfix">
                                                     <span class="pull-left float-left">{$taxname} @ {$taxrate}%</span>
-                                                    <span id="taxTotal1" class="pull-right float-right">Rp. {$taxpersen} IDR</span>
+                                                    <span id="taxTotal1" class="pull-right float-right">Rp. {$taxpersen|number_format:2:".":","} IDR</span>
                                                 </div>
                                             {else}
                                                 <div class="clearfix">
@@ -632,7 +632,7 @@
                                         <span id="recurring" class="pull-right float-right recurring-charges">
                                             <span id="recurringMonthly" {if !$totalrecurringmonthly}style="display:none;"{/if}>
                                                 {if $product.pid == $idproduk}
-                                                    <span class="cost">Rp. {$totalday} IDR</span> {$LANG.orderpaymenttermmonthly}<br />
+                                                    <span class="cost">Rp. {$totalday|number_format:2:".":","} IDR</span> {$LANG.orderpaymenttermmonthly}<br />
                                                 {else}
                                                     <span class="cost">{$totalrecurringmonthly}</span> {$LANG.orderpaymenttermmonthly}<br />
                                                 {/if}
@@ -645,7 +645,7 @@
                                             </span>
                                             <span id="recurringAnnually" {if !$totalrecurringannually}style="display:none;"{/if}>
                                                 {if $product.pid == $idproduk}
-                                                    <span class="cost">Rp. {$totalday} IDR</span> {$LANG.orderpaymenttermannually}<br />
+                                                    <span class="cost">Rp. {$totalday|number_format:2:".":","} IDR</span> {$LANG.orderpaymenttermannually}<br />
                                                 {else}
                                                     <span class="cost">{$totalrecurringannually}</span> {$LANG.orderpaymenttermannually}<br />
                                                 {/if}
@@ -661,7 +661,7 @@
                                 {/if}
                                 <div class="total-due-today total-due-today-padded">
                                     {if $product.pid == $idproduk}
-                                        <span id="totalDueToday" class="amt">Rp. {$totalday} IDR</span>
+                                        <span id="totalDueToday" class="amt">Rp. {$totalday|number_format:2:".":","} IDR</span>
                                         <span>{$LANG.ordertotalduetoday}</span>
                                     {else}
                                         <span id="totalDueToday" class="amt">{$total}</span>
